@@ -182,14 +182,14 @@ format-online-padding = 4
 [module/myBattery]
 interval=1
 type = custom/script
-exec = /usr/lib/i3blocks/battery
+exec = /home/luis/i3blocks/battery
 format-underline = #ffb52a
 
 [module/mySpotify]
 inherit = module/theme
 interval = 1
 type = custom/script
-exec = /usr/lib/i3blocks/mediaplayer
+exec = /home/luis/i3blocks/mediaplayer
 click-left = i3-msg workspace number 9
 label = %output:0:30:...%
 format-prefix = " "
@@ -201,7 +201,7 @@ format-background = #0d5959
 inherit = module/theme
 interval = 0.5
 type = custom/script
-exec = /usr/lib/i3blocks/volume
+exec = /home/luis/i3blocks/volume
 scroll-up = pactl set-sink-volume 1 +1%
 scroll-down = pactl set-sink-volume 1 -1%
 click-left = urxvt -name float -e ncmpcpp &
@@ -213,7 +213,7 @@ format-underline = #20dfdf
 inherit = module/theme
 interval = 1
 type = custom/script
-exec = /usr/lib/i3blocks/load_average
+exec = /home/luis/i3blocks/load_average
 click-left = urxvt -name float -e htop &
 format-underline = #d33636
 
