@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/luis/.config/polybar/config'
+let g:netrw_dirhist_2='/home/luis/.config/polybar'
+let g:netrw_dirhist_3='/home/luis/.config'
+let g:netrw_dirhist_4='/home/luis/.config/polybar'

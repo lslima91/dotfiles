@@ -1,0 +1,218 @@
+# mod
+set $mod Mod4
+
+# font
+font pango: Roboto 12
+
+# thin borders
+hide_edge_borders both
+
+new_window pixel 4
+gaps inner 10
+smart_gaps on
+
+
+# drag windows
+floating_modifier $mod
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# lock
+#bindsym $mod+Shift+x exec i3lock --textcolor=eee8d5ff --ringcolor=07364295 --keyhlcolor=268bd295 --bshlcolor=dc322f95 --insidecolor=002b3695 --insidevercolor=268bd295 --ringvercolor=268bd295 --insidewrongcolor=dc322f95 --ringwrongcolor=dc322f95 --linecolor=07364295 --separatorcolor=07364295
+# bindsym $mod+Shift+x exec "/home/luis/.config/i3/lock.sh"
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+set $workspace1 " 1 "
+set $workspace2 " 2 "
+set $workspace3 " 3 "
+set $workspace4 " 4 "
+set $workspace5 " 5 "
+set $workspace6 " 6 "
+set $workspace7 " 7 "
+set $workspace8 " 8 "
+set $workspace9 " 9 "
+set $workspace10 "10"
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -b 'Yes' 'i3-msg exit'"
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Lefj resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# resize mode
+bindsym $mod+r mode "resize"
+
+set $bg-color 	         #2f343fee
+set $inactive-bg-color   #2f343fee
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+#bb <- Good transparency (disabled because of black borders on GTK windows)
+set $boract              #268bd2
+#50
+set $boroff              #2f343f
+#90
+set $indcol              #93c7eb
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $boract             $boract            $text-color          $indcol
+client.unfocused        $boroff	            $boroff            $inactive-text-color $boroff
+client.focused_inactive $boroff             $boroff            $inactive-text-color $boroff
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $indcol
+
+# bar
+#bar {
+#	#separator_symbol "╱"
+#	separator_symbol " "
+#	height 40
+#	tray_padding 5
+#	font pango: Roboto 12
+#  	status_command i3blocks -c "/home/luis/.config/i3/i3blocks.conf"
+#	i3bar_command i3bar -t
+#  	#status_command i3status
+#	colors {
+#		background $bg-color
+#	    	separator #757575
+#		#                  border             background         text
+#		focused_workspace  $bg-color          $bg-color          $text-color
+#		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#	}
+#}
+
+# sticky window
+bindsym $mod+Shift+s sticky toggle
+
+# default floating
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Skype"] floating enable
+# for_window [class="Termite" instance="float"] floating enable
+
+# default workspaces
+assign [class="spotify"] $workspace9
+
+# workspace default monitors
+ workspace $workspace2 output DP-4
+
+# key-bindings
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+
+#bindsym XF86AudioPlay exec playerctl play-pause
+#bindsym XF86AudioPause exec playerctl play-pause
+#bindsym XF86AudioNext exec playerctl next
+#bindsym XF86AudioPrev exec playerctl previous
+
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc previous
+
+bindsym XF86MonBrightnessUp exec light -A 10 && notify-send -u low \"   $('light')% \"
+bindsym XF86MonBrightnessDown exec light -U 10 && notify-send -u low \"   $('light')% \"
+
+bindsym $mod+c exec chromium
+bindsym $mod+i exec chromium --incognito
+bindsym $mod+Shift+Return exec thunar
+bindsym $mod+Shift+y exec su - -c yast2
+
+bindsym $mod+Return exec termite
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec rofi -show run -lines 5 -width 100 -padding 300 -fullscreen -font "Roboto 30" -separator-style "none"
+#bindsym $mod+d exec dmenu_run
+
+#bindsym Control+Mod1+Down exec xrandr --output eDP-1 --rotate normal
+#bindsym Control+Mod1+Up exec xrandr --output eDP-1 --rotate inverted
+#bindsym Control+Mod1+Left exec xrandr --output eDP-1 --rotate right
+#bindsym Control+Mod1+Right exec xrandr --output eDP-1 --rotate left
+
+# startup
+exec_always --no-startup-id feh --bg-fill "/home/luis/Pictures/pic.jpg"
+exec_always --no-startup-id killall polybar; polybar main -c "/home/luis/.config/i3/polybar"
+exec --no-startup-id compton --config "/home/luis/.config/compton.conf"
+exec --no-startup-id dunst -conf "/home/luis/.config/dunstrc"
+exec --no-startup-id conky main -c "/home/luis/.config/conky/config"
+exec --no-startup-id nm-applet
+exec --no-startup-id mopidy
+
+exec --no-startup-id xrandr --output HDMI-0 --auto --right-of DP-4
+
