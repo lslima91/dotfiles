@@ -55,8 +55,7 @@ font-1 = FontAwesome:pixelsize=16;-2
 
 modules-left = i3 xwindow
 modules-center =
-;modules-right = mpd myVolume s wlan eth s memory cpu myLoad temperature s battery s date powermenu
-modules-right = myVolume memory cpu myLoad temperature date
+modules-right = myVolume s wlan eth s memory cpu myLoad temperature s battery s date powermenu
 ;systemRoot systemHome s
 
 tray-position = right
@@ -274,7 +273,7 @@ label = %percentage_used% %
 [module/wlan]
 inherit = module/theme
 type = internal/network
-interface = wlo0
+interface = wlp0s20f0u2
 interval = 1
 
 format-connected = <label-connected>
